@@ -1,0 +1,453 @@
+PROMPT: «SÖZ SƏNƏTİMİZİN İZİ İLƏ» — X SİNİF ƏDƏBİYYATI ÜZRƏ İNTERAKTİV OYUN
+(Əsas mənbə: «Ədəbiyyat – 10», müəlliflər: Soltan Əliyev, Bilal Həsənov, Aynur Mustafayeva; ETN, CC BY-NC-SA 4.0)
+
+====================================================================
+1. SƏNİN ROLUN
+====================================================================
+Sən təhsil oyunları hazırlayan təcrübəli dizayner, metodist və veb-proqramçısan. Azərbaycan ədəbiyyatını və X sinif ədəbiyyat kurikulumunu yaxşı bilirsən. Aşağıdakı tələblərə əsasən 10-cu sinif şagirdləri üçün hazır, işlək interaktiv oyun hazırla.
+
+====================================================================
+2. MƏQSƏD VƏ AUDİTORİYA
+====================================================================
+- Şagirdlər: 10-cu sinif (15–16 yaş).
+- Oyun iki istiqaməti əhatə etməlidir:
+  A) ƏSƏRLƏRİN MƏZMUNU — süjet, hadisələrin ardıcıllığı, obrazlar, onların xarakteri, əsərin mövzusu, ideyası, janrı, misralar.
+  B) HƏYAT VƏ YARADICILIQ — sənətkarın doğulduğu yer, illər, təhsili, müəllimləri, həyatındakı mühüm hadisələr, təxəllüsü, əsərləri, janrları, ədəbi cərəyandakı yeri.
+- İstifadə şəraiti: sinifdə proyektor və ya ağıllı lövhədə komanda yarışı; evdə telefon və ya kompüterdə fərdi məşq.
+- Bütün interfeys və mətnlər Azərbaycan dilində (latın qrafikası) olsun; ə, ğ, ı, İ, ö, ü, ç, ş hərfləri düzgün göstərilsin.
+
+====================================================================
+3. TEXNİKİ TƏLƏBLƏR
+====================================================================
+- Bütün oyun TƏK HTML faylında olsun (HTML + CSS + JavaScript bir faylda). İnternetsiz işləsin: xarici kitabxana, şrift və şəkil linki olmasın.
+- Proyektor üçün böyük şrift (sual mətni ən azı 28 px), yüksək kontrast, aydın düymələr. Telefonda da rahat açılsın (responsive).
+- Ağıllı lövhə üçün bütün idarəetmə toxunuşla işləsin; kompüterdə klaviatura qısayolları da olsun (1–4 variant seçimi, Enter növbəti, Space taymeri dayandırır).
+- Səs effektləri olsun (Web Audio ilə sadə səslər), amma «Səsi bağla» düyməsi mütləq olsun.
+- Sual bankı faylın içində ayrıca JSON massivi kimi saxlanılsın ki, müəllim onu asanlıqla redaktə edə bilsin.
+- localStorage istifadə edilərsə, try/catch ilə bükülsün; işləməsə, oyun yenə də dayanmadan işləsin.
+- Hər oyunda suallar və variantlar təsadüfi qarışdırılsın; eyni oyunda sual təkrarlanmasın.
+
+====================================================================
+4. OYUNUN QURULUŞU
+====================================================================
+4.1. Başlanğıc ekranı
+- Oyunun adı: «Söz sənətimizin izi ilə».
+- Rejim: «Komanda yarışı» (2–4 komanda; adlarını yazmaq olsun) və ya «Fərdi məşq».
+- İstiqamət: «Əsərlər», «Sənətkarlar» və ya «Qarışıq».
+- Dövr seçimi (bir neçəsi birlikdə seçilə bilsin):
+  1) Şifahi xalq ədəbiyyatı və qədim dövr
+  2) İntibah dövrü
+  3) Orta əsrlər
+  4) Erkən yeni dövr
+  5) Maarifçi-realizm dövrü
+- Çətinlik: Asan / Orta / Çətin / Qarışıq.
+- Sual sayı: 10 / 20 / 30.
+
+4.2. «Ədəbi xəritə»
+Dövrlər xəritədə stansiyalar kimi göstərilsin (zaman xətti və ya yol şəklində). Komanda stansiyadan stansiyaya irəlilədikcə yol açılsın. Hər stansiyanın üstündə həmin dövrün sənətkarlarının adları yazılsın.
+
+4.3. Mini-oyunlar (raund növləri)
+Oyun aşağıdakı raund növlərini qarışıq şəkildə növbələsin:
+ 1) «Kimdir bu sənətkar?» — 4 ipucu kartı bir-bir açılır (çətindən asana doğru). Nə qədər tez tapılsa, bir o qədər çox xal (1-ci ipucunda 400, 2-ci 300, 3-cü 200, 4-cü 100).
+ 2) «Test» — 4 variantlı sual (bir düzgün cavab).
+ 3) «Doğru, yoxsa yanlış?» — cavabdan sonra izah mütləq göstərilir.
+ 4) «Uyğunlaşdır» — 4–5 cüt: obraz ↔ əsər, sənətkar ↔ doğulduğu yer, əsər ↔ janr, sənətkar ↔ təxəllüs/əsər, əsər ↔ il. Sürükləyib buraxmaqla və ya ardıcıl iki kliklə.
+ 5) «Zaman lenti» — 4–5 sənətkarı (və ya əsəri) xronoloji ardıcıllıqla düz.
+ 6) «Süjet zənciri» — bir əsərin 4–5 hadisəsini baş vermə ardıcıllığı ilə düz.
+ 7) «Misra kimindir?» — bölmə 7-də verilmiş misralardan biri göstərilir; müəllifi və ya əsəri tapılır. Misraları yalnız bölmə 7-dən götür, dəyişmə.
+ 8) «Final sualı» — oyunun sonunda hər komanda xalının bir hissəsini (10–50%) mərcə qoyur, çətin sual verilir.
+
+4.4. Jokerlər (hər komandaya bir dəfə)
+- «50/50» — iki səhv variant silinir.
+- «İpucu» — qısa işarə və dərsliyin səhifəsi göstərilir; xal 50% azalır.
+- «Əlavə vaxt» — taymerə 15 saniyə əlavə olunur.
+
+4.5. Xal və taymer
+- Asan 100, Orta 200, Çətin 300 xal.
+- Taymer: hər sual 30 saniyə (müəllim parametrlərdə dəyişə bilsin, ya da söndürə bilsin).
+- Sürət bonusu: ilk 10 saniyədə düzgün cavab +50.
+- Seriya bonusu: ardıcıl 3 düzgün cavab +100.
+- Komanda rejimində suallar komandalar arasında növbə ilə verilsin; ekranda canlı xal lövhəsi olsun.
+
+4.6. Cavabdan sonrakı rəy
+Hər cavabdan sonra:
+- düzgün/səhv olduğu rənglə və səslə bildirilsin;
+- düzgün cavab göstərilsin;
+- 1–2 cümləlik izah verilsin;
+- «Dərslik, s. __» qeydi göstərilsin (səhifələr bölmə 7-də var).
+
+4.7. Yekun ekranı
+- Komandaların reytinqi, qızıl/gümüş/bürünc medal, konfetti effekti.
+- Statistika: neçə düzgün, neçə səhv, ən çox səhv olunan dövr/sənətkar.
+- «Səhvlərimi təkrar et» düyməsi — yalnız səhv cavablanmış suallarla qısa raund.
+- «Çap et» — qalib komandanın adı, tarix və xalı olan sadə diplom (çapa uyğun ağ fon).
+
+4.8. Müəllim paneli (parolsuz, «Müəllim üçün» düyməsi ilə)
+- Sual bankını cədvəl kimi görmək, sualı söndürmək/yandırmaq.
+- Yeni sual əlavə etmək (forma ilə).
+- Sual bankını JSON kimi ixrac və idxal etmək.
+- Taymeri, sual sayını, səsi tənzimləmək.
+
+====================================================================
+5. SUAL BANKINA TƏLƏBLƏR
+====================================================================
+- Faktları YALNIZ bölmə 7-dəki bilik bazasından götür. Orada olmayan tarix, ad, fakt uydurma. Əmin olmadığın faktı istifadə etmə.
+- Ən azı 200 sual hazırla:
+  • hər sənətkar üzrə həyat və yaradıcılığa dair ən azı 8 sual;
+  • hər əsər üzrə məzmuna dair ən azı 8 sual;
+  • dövrlər, ədəbi cərəyanlar və janrlar üzrə ən azı 15 ümumi sual;
+  • hər raund növü üçün kifayət qədər sual («Kimdir bu sənətkar?» üçün hər sənətkara bir kart dəsti, «Süjet zənciri» üçün hər süjetli əsərə ən azı bir dəst və s.).
+- Çətinlik səviyyələri təxminən bərabər bölünsün: Asan 35%, Orta 40%, Çətin 25%.
+  • Asan — birbaşa fakt (doğulduğu şəhər, əsərin müəllifi).
+  • Orta — əlaqələndirmə (obrazın əsəri, əsərin janrı, hadisənin səbəbi).
+  • Çətin — təhlil (ideya, obrazın xarakteri, müqayisə, xronologiya).
+- Yanlış variantlar inandırıcı olsun: eyni kateqoriyadan seçilsin (şəhər — şəhər, il — il, obraz — başqa əsərin obrazı). Açıq-aşkar gülünc variant olmasın.
+- Hər sualın yalnız BİR düzgün cavabı olsun; «hamısı», «heç biri» tipli variantlardan qaç.
+- Sual mətni qısa və aydın olsun, 10-cu sinif şagirdinin dilində.
+- Hər sualın izahı (1–2 cümlə) və dərslik səhifəsi olsun.
+- JSON strukturu (nümunə):
+  {
+    "id": "fuz-03",
+    "dovr": "Orta əsrlər",
+    "istiqamet": "Sənətkarlar",
+    "sənetkar": "Məhəmməd Füzuli",
+    "eser": null,
+    "nov": "test",            // test | dogru-yanlis | uygunlasdir | zaman-lenti | sujet-zenciri | misra | ipucu-kart | final
+    "cetinlik": "orta",
+    "sual": "Füzuli harada vəfat etmiş və dəfn olunmuşdur?",
+    "variantlar": ["Kərbəlada", "Bağdadda", "Təbrizdə", "Hələbdə"],
+    "duzgun": 0,
+    "izah": "Füzuli 1556-cı ildə Kərbəlada vəfat etmiş, İmam Hüseyn məqbərəsinin astanasında dəfn edilmişdir.",
+    "sehife": 80
+  }
+
+====================================================================
+6. NÜMUNƏ SUALLAR (format üçün)
+====================================================================
+[Test, asan] «Xəmsə»ni yaradan sənətkar kimdir?
+  A) Nizami Gəncəvi  B) Məhəmməd Füzuli  C) İmadəddin Nəsimi  D) Şah İsmayıl Xətayi  → A (s. 42)
+
+[Doğru/yanlış, orta] «Müsyö Jordan və dərviş Məstəli şah» komediyasında Müsyö Jordan və dərviş Məstəli şah səhnədə üz-üzə gəlib mübahisə edirlər.
+  → Yanlış. Onlar əsər boyu üz-üzə gəlmirlər, lakin köhnəlik və yenilik arasındakı konflikt məhz onların təmsil etdiyi qüvvələr arasında gedir. (s. 138–139)
+
+[Kimdir bu sənətkar?]
+  1) Ölümündən sonra əlyazmalarının itdiyi güman edilir.
+  2) Qarabağ xanlığında eşikağası olmuşdur.
+  3) Azərbaycan ədəbiyyatında erkən realizmin yaradıcısıdır.
+  4) «Pəri» qoşmasının müəllifidir.
+  → Molla Pənah Vaqif (s. 107–108)
+
+[Süjet zənciri — «Salur Qazanın evinin yağmalandığı boy»]
+  Qazan oğuz bəyləri ilə Ala dağa ova çıxır → Casus xəbər verir, Şöklü Məlik gecə Qazanın düşərgəsini yağmalayır → Kafirlər Qaraca çobanın qoyunlarını almaq üçün 600 nəfər göndərir → Kafirlər Burla xatunu tanımaq üçün Uruzun ətindən qovurma bişirib qırx qıza vermək istəyirlər. (s. 25–36)
+
+[Misra kimindir?] «Məndə sığar iki cahan, mən bu cahanə sığmazam» → İmadəddin Nəsimi, «Sığmazam» qəzəli (s. 65)
+
+[Uyğunlaşdır] Səadət xanım — «Müsibəti-Fəxrəddin»; Şahbaz bəy — «Müsyö Jordan...»; Yusif Sərrac — «Aldanmış kəvakib»; Nüşabə — «İskəndərnamə»; Burla xatun — «Kitabi-Dədə Qorqud».
+
+====================================================================
+7. BİLİK BAZASI (dərslikdən götürülüb; sualları yalnız buradan qur)
+====================================================================
+
+--------------------------------------------------------------------
+7.0. ÜMUMİ MƏLUMATLAR
+--------------------------------------------------------------------
+- Dərslikdə ədəbiyyat tarixi-ədəbi prinsiplə öyrənilir: Şifahi xalq ədəbiyyatı → Qədim dövr → İntibah dövrü → Orta əsrlər → Erkən yeni dövr → Maarifçi-realizm dövrü.
+- Ədəbiyyatımız mənşəyini türk xalqları üçün ortaq olan qədim türk (ümumtürk) ədəbiyyatından almışdır. Bu ortaq ədəbiyyat ən qədim zamanlardan islamın qəbuluna qədər olan dövrü əhatə edir; onun əsasında tanrıçılıq dünyagörüşünü əks etdirən qədim türk eposu dayanır.
+- İlk yazılı ortaq ədəbi-tarixi abidələr VII yüzilliyə aid Orxon-Yenisey kitabələri sayılır.
+- Dastan şifahi xalq ədəbiyyatının həcmcə ən böyük janrıdır.
+- Ədəbi cərəyanlar: Vaqif — erkən realizmin yaradıcısı; M.F.Axundzadə — maarifçi realizmin yaradıcısı; Q.Zakir satiraları ilə maarifçi realizmin təşəkkülünə töhfə vermişdir.
+
+--------------------------------------------------------------------
+7.1. «KİTABİ-DƏDƏ QORQUD» EPOSU (s. 21–24)
+--------------------------------------------------------------------
+- Oğuz türklərinin həyatını, məişətini, inancını, mübarizəsini əks etdirən ən möhtəşəm abidə. Eposu yaradan da, qəhrəmanları da oğuzlardır.
+- Ayrıca süjet xətti olan boylardan ibarətdir; ümumi ideya onları birləşdirir.
+- Oğuz elinə Bayındır xan başçılıq edir; Qazan xan ondan sonra ikinci şəxs — başçı və sərkərdədir.
+- Düşmənlər «qara donlu kafirlər» adlanır.
+- Əsas problemlər: vətənin toxunulmazlığı, xalqın müdafiəsi, oğuz igidlərinin birliyi, vətənə layiq gənclərin tərbiyəsi, dövlətçilik düşüncəsi, adət-ənənələrin qorunması.
+- Obrazlar: Qazan xan, Dirsə xan (xeyirxah, yumşaqtəbiətli), Aruz Qoca, Bəkil, Bamsı Beyrək (dözümlü, iradəli, sədaqətli), Səgrək, Qanturalı, Basat, Dəli Dondar, Uruz, Qaraca çoban; qadın obrazları: Burla xatun, Banıçiçək, Selcan xatun (ağıllı, tədbirli, vəfalı, qorxmaz).
+
+«SALUR QAZANIN EVİNİN YAĞMALANDIĞI BOY» (s. 25–37)
+- Qazanın təqdimatı: «Ulaş oğlu Salur Qazan», «Bayındır xanın kürəkəni», «Qonur atın yiyəsi», «Uruz xanın ağası (atası)», «Qalın Oğuzun dayağı». Doxsan otaqlı uca evləri var idi.
+- Qazan oğuz bəyləri ilə Ala dağa ova çıxır. Aruz Qoca soruşur: «Qərargahının üstündə kimi qoyursan?» Qazan: «Oğlum Uruz üç yüz igidlə evimin keşiyində dursun».
+- Kafirlərin casusu bunu görüb Şöklü Məlikə xəbər verir. Şöklü Məlik yeddi min kafirlə gecə yarısı Qazanın düşərgəsinə basqın edir.
+- Burla xatun qırx incə belli qızla əsir aparılır; Qazanın qoca anası qara dəvənin boynundan asılı aparılır; Uruz üç yüz igidlə əli-boynu bağlı əsir düşür; İlək Qoca oğlu Sarı Qalmaş döyüşdə şəhid olur.
+- Qazan qorxulu yuxu görür (ildırım, qara duman, qurdların evini dəlməsi), yozmağı Qaragünədən xahiş edir.
+- Kafirlər Qazanın Qaraca çobanın yanındakı qoyunlarını da almaq üçün altı yüz kafir göndərir. Qaraca çoban yuxuda qara əhvalat görür, qardaşları Qabangücü və Dəmirgücünü çağırır, ağılın qapısını bərkidir, üç yerdə daş yığır və ala qollu sapandı ilə döyüşür.
+- Burla xatunu tanımaq istəyən kafirlər «Qazan bəyin xatunu hansınızdır?» deyəndə qırx yerdən səs gəlir. Sonra Uruzu çəngəldən asıb ətindən qovurma bişirib qırx qıza vermək qərarına gəlirlər: «kim yemədi, o, Qazanın arvadıdır». Burla xatun çətin sınaq qarşısında qalır: ya namus, ya oğul dağı.
+- Uruz əsirlikdə oğuz elinin layiqli övladı olduğunu sübut edir.
+- Qazan xan düşməndən yağmalanmış var-dövləti yox, yalnız qoca anasını geri istəyir (döyüşdə «at ayağı altında qalmasından» ehtiyat edir).
+- Qazanın köməyinə gələn igidlərdən Qaragünə belə təsvir olunur: «acığı tutanda qara daşı kül eyləyən, bığını boynu dalında yeddi dəfə düyünləyən».
+- Bədii xüsusiyyət: qafiyəli nəsr; səs təkrarları ahəngi artırır; döyüş səhnələri ustalıqla təsvir olunur.
+- İdeya: oğuz türklərinin yüksək mənəvi-əxlaqi dəyərlərə sahib olması və bu dəyərləri ləyaqətlə yaşatması.
+- Misra (Qaraca çoban kafirə): «Boş-boş danışma, itim kafir! İtimlə bir yalaqdan yal içən, azğın kafir.»
+
+--------------------------------------------------------------------
+7.2. NİZAMİ GƏNCƏVİ (1141–1209) — İntibah dövrü (s. 41–56)
+--------------------------------------------------------------------
+- Əsl adı: İlyas Yusif oğlu. Gəncə şəhərində doğulmuşdur. O dövrdə İpək yolunun keçdiyi Gəncə iqtisadi və mədəni mərkəz idi.
+- Ömrü boyu Gəncədə yaşamış, dini və dünyəvi elmləri mənimsəmiş, fars və ərəb dillərindən başqa bir sıra dilləri öyrənmişdir.
+- Tərbiyəsi ilə dayısı Xacə Ömər məşğul olmuşdur.
+- Hökmdarların himayəsində, saraylarda yaşamaqdan imtina etmişdir; humanist, müdrik, gözütox insan kimi tanınmışdır.
+- 1209-cu ildə vəfat etmişdir. Məhəmməd adlı oğlu olmuşdur.
+- Yaradıcılığa lirik şeirlərlə başlamışdır; bu gün ona aid 120 qəzəl, 30 rübai, 6 qəsidə məlumdur.
+- Otuz il ərzində beş poema yazmışdır; sonralar onlar «Xəmsə» (beşlik) adlanmışdır:
+  1) «Sirlər xəzinəsi» (1174) — ictimai-fəlsəfi; iyirmi məqalət (söhbət) və iyirmi hekayət. Hekayətlər: «Nuşirəvan və bayquşların söhbəti», «Sultan Səncər və qarı», «Zalım padşahla zahidin dastanı».
+  2) «Xosrov və Şirin» (1181) — Sasani şahı Xosrov Pərviz və Azərbaycan gözəli Şirinin sevgisi. Şirin şairin ən çox sevdiyi qəhrəmanlardandır; Xosrovu tədricən dəyişir.
+  3) «Leyli və Məcnun» (1188) — qədim ərəb əfsanəsi əsasında; qəhrəmanlar məhv olsalar da məğlub olmur, mənəvi qələbə çalırlar.
+  4) «Yeddi gözəl» (1197) — Sasani şahı Bəhram Gurun həyatı ilə bağlı; hökmdarlığın böyük məsuliyyət olduğu göstərilir.
+  5) «İskəndərnamə» (1203-cü ildə tamamlanıb) — iki hissə: «Şərəfnamə» (İskəndərin müharibələri, ədaləti bərqərar etmək səyləri) və «İqbalnamə» (elmi-fəlsəfi düşüncələr).
+- Rus şərqşünası Yevgeni Bertels: Nizaminin Fərhad, Leyli, Məcnun, Bəhram, İskəndər obrazları dünya ədəbiyyatı xəzinəsinə daxil olmuşdur.
+
+«İSKƏNDƏRNAMƏ» (ixtisarla) (s. 45–56)
+- Dərslikdəki parçalar: «İskəndərin təlim alması», «İskəndərin taxta çıxması», «Zənci ordusunun gəlməsindən İskəndərin xəbərdar olması», «Daranın İskəndərlə müharibəyə qoşun çıxarması», «Daranın İskəndərlə müharibəsi», «İskəndərin Bərdəyə gəlməsi və Nüşabə ilə görüşməsi».
+- İskəndər obrazı Nizaminin təxəyyülünün məhsuludur; onu tarixi makedoniyalı İskəndərlə eyniləşdirmək olmaz. Şair onda ideal hökmdar obrazı yaradıb. Qəhrəman inkişafda verilir: hökmdar → filosof → peyğəmbər.
+- İskəndərin müəllimi — dövrünün alimi Niqumaş.
+- Feyləqus — Rum (Yunan) hökmdarı, İskəndərin atası; ədalətli qanunları ilə zülmü aradan qaldırmış, Daraya xərac verməklə ölkəsinin toxunulmazlığını qorumuşdur.
+- Dara (İran şahı) — təkəbbürlü, ədalətsiz, zalım; İskəndərlə müharibədə məğlub olur — bu, öz əməllərinin nəticəsidir.
+- Pələngər — qonşu ölkələri işğal edən amansız şah; İskəndərin əli ilə cəzalanır.
+- Nüşabə — Bərdənin hökmdarı, türk qızı. İskəndər Bərdəyə özünü «İskəndərin elçisi» kimi təqdim edərək gəlir. Nüşabə ipək üzərində çəkilmiş padşah rəsmlərini gətirtdirib İskəndərin öz şəklini ona göstərir və onu tanıdığını bildirir. Sonra süfrəyə yeməklə yanaşı ləl, qızıl, dürr və yaqutla dolu dörd büllur kasa qoyulmuş xonça qoydurur. İskəndər «Daş-qaş yeyilərmi?» deyəndə Nüşabə ona ibrət dərsi verir. Məğrur İskəndər Nüşabənin ağlı və fərasəti qarşısında aciz qalır.
+- Misra (Nüşabə): «Mən də bir aslanam, düşünsən bir az, / Aslanın erkəyi, dişisi olmaz.»
+- Bərdənin təsviri: «Bərdə nə gözəldir, necə qəşəngdir, / Yazı da, qışı da güldür, çiçəkdir.»
+- Həyat hadisələrinin geniş və inkişafda verilməsinə görə bir sıra tədqiqatçılar poemanı mənzum roman adlandırır.
+
+--------------------------------------------------------------------
+7.3. İMADƏDDİN NƏSİMİ (1369–1417) — Orta əsrlər (s. 61–68)
+--------------------------------------------------------------------
+- Dövr: XIII–XIV əsrlərdə Çingiz xanın, Toxtamışın, Teymurun basqınları Azərbaycanda sabitliyi pozmuşdu.
+- Hürufilik təriqətinin başçısı və nəzəriyyəçisi — Azərbaycan alimi və şairi Şeyx Fəzlullah Nəimi. Hürufiliyə görə Allah insanda təcəssüm tapır, kamil insan Tanrı səviyyəsinə yüksələ bilər; ona görə insana əzab vermək olmaz.
+- Doğulduğu il və yer barədə fərqli fikirlər var; həyatı haqqında çoxlu rəvayət mövcuddur.
+- Əvvəl sufizmə meyil etmiş, sonra Nəiminin görüşlərinə tərəfdar çıxmışdır.
+- Təqib olunmuş, ölkədən-ölkəyə keçmiş, əqidəsindən dönməmişdir. Hələb şəhərində həbs edilib 1417-ci ildə ağır işgəncələrlə edam olunmuşdur.
+- Janrlar: qəzəl, qəsidə, tuyuq, rübai, müstəzad. Həm türkcə, həm farsca yazmışdır.
+- Şeirləri: təriqət (sufi və hürufi) şeirləri və dünyəvi şeirlər; dini mövzuda əsərləri də var.
+- Hürufi şeirləri: «Söz», «Sığmazam», «Mənəm, mən» rədifli qəzəllər; «Daim ənəlhəq söylərəm...».
+- Məhəbbət qəzəlləri: «Neylərəm?», «Etməgil», «Yanaram».
+- «Nəsimi poeziya tariximizdə siyasi-fəlsəfi şeirin ilk böyük nümayəndəsidir.»
+- Misra: «Dilbəra, mən səndən ayru ömrü canı neylərəm? / Tacü təxti, mülkü malu, xanimanı neylərəm?»
+
+«SIĞMAZAM» qəzəli (s. 65–68)
+- Təriqət (hürufi) şeiridir; insanın Allahla, maddi və mənəvi aləmlə eyni olması fikrini ifadə edir.
+- Lirik qəhrəmanın monoloqu təsiri bağışlayır; qəhrəman qətiyyətlidir, fikirlərini hökm şəklində deyir: onda iki cahan sığır, özü isə heç nəyə sığmır.
+- Bədii vasitələr: alliterasiya (samitlərin təkrarı), təkrir, təzad.
+- Misralar: «Məndə sığar iki cahan, mən bu cahanə sığmazam, / Gövhəri-laməkan mənəm, kövnü məkanə sığmazam.»
+
+--------------------------------------------------------------------
+7.4. ŞAH İSMAYIL XƏTAYİ (1487–1524) — Orta əsrlər (s. 69–78)
+--------------------------------------------------------------------
+- Atası Ərdəbil hakimi Şeyx Heydər; ulu babası Şeyx Səfiəddin (Səfəvilər sülaləsi onun adı ilə bağlıdır); anası Aləmşahbəyim — Ağqoyunlu hökmdarı Uzun Həsənin qızı.
+- Atası öldürüldükdən sonra övladlar Ağqoyunlular tərəfindən təqib edilmiş, həbsdə saxlanılmışlar.
+- On üç yaşında hakimiyyət uğrunda mübarizəyə başlamış; 1501-ci ildə Təbrizə daxil olub özünü şah elan etmiş; 1503-cü ildə Ağqoyunlu hökmdarı Sultan Muradı məğlub etmişdir.
+- 1514-cü ildə Çaldıran döyüşündə Osmanlı sultanı Səlim Yavuza məğlub olmuş, sonra ölkənin daxili işləri ilə məşğul olmuşdur.
+- 1524-cü ildə 37 yaşında vəfat etmişdir. Azərbaycan Səfəvi dövlətinin yaradıcısıdır.
+- Heca vəznində qoşma, gəraylı, bayatı; əruz vəznində qəzəl, qəsidə, rübai yazmışdır. Ana dilində yazmağa üstünlük vermişdir.
+- Əsərləri: «Divan», «Nəsihətnamə» və «Dəhnamə» məsnəviləri.
+- «Nəsihətnamə»də gənclərə Allahı sevmək, yaşlılara hörmət etmək, könül yıxmamaq, xalqa sədaqətli olmaq tövsiyə edilir.
+- Misralar: «Sufi isən, alıb-satma, / Halalına haram qatma...»; «Bahar oldu ki, aləm gülşən oldu, / Gözün aç, gör cahan nə rövşən oldu.»
+
+«DƏHNAMƏ» (s. 72–78)
+- «Dəhnamə» — «on məktub» deməkdir. Xətayi bu ən irihəcmli poemasını 19 yaşında tamamlamışdır. Məhəbbət mövzusundadır.
+- Obrazlar: Aşiq (gənc oğlan), Məşuqə (pəri, amma insan kimi təqdim olunur), bağban (xeyirxah); rəmzi obrazlar: Səba, Huş, Ah, Göz yaşı — qasid (elçi) rolunu oynayırlar.
+- Aşiq eşq nə olduğunu bilmədən rahat yaşayırdı; yuxuda gördüyü qıza aşiq olandan sonra həyatı dəyişir.
+- Bahar təsviri ilə başlanır: «Qış getdi, yenə bahar gəldi, / Gül bitdivü laləzar gəldi.»
+- Aşiqin halı: «Yar zülfü təki günüm qarardı, / Yar ağzı kimi yerim darardı.»
+
+--------------------------------------------------------------------
+7.5. MƏHƏMMƏD FÜZULİ (1494–1556) — Orta əsrlər (s. 79–90)
+--------------------------------------------------------------------
+- Əsl adı: Məhəmməd Süleyman oğlu. Bağdad yaxınlığındakı Kərbəlada doğulmuşdur.
+- Mükəmməl təhsil almışdır; buna görə «mövlana» adlandırılmışdır. Təxəllüsü: Füzuli.
+- Dini ocaqlarda xidmət etmiş, aldığı maaşla sadə, qənaətcil həyat sürmüşdür. Səfəvi və Osmanlı hökmdarları onu tanısa da, saraylara getməmişdir.
+- Onu şəxsən tanıyan Əhdi Bağdadi «Gülşəni-şüəra» təzkirəsində onu bilikdə kamil, misilsiz sənətkar, şirinsöhbət insan kimi təqdim etmişdir.
+- Yeganə övladı — oğlu Fəzli (ziyalı, şeir yazırdı).
+- Doğulduğu İraqdan heç vaxt ayrılmamışdır. 1556-cı ildə Kərbəlada vəfat etmiş, İmam Hüseyn məqbərəsinin astanasında dəfn edilmişdir.
+- İrsi: Azərbaycan türkcəsində divan, fars dilində divan, üç dildə qəsidələr divanı; Azərbaycan dilində poemalar — «Leyli və Məcnun» (1537), «Bəngü Badə», «Söhbətül-əsmar»; fars dilində poema — «Həft cam»; Azərbaycan dilində nəsr — «Hədiqətüs-süəda», məktublar; fars dilində nəsr — «Rindü Zahid», «Səhhət və Mərəz»; ərəb dilində — «Mətləül-etiqad»; tərcümə — «Hədisi-ərbəin» («Qırx hədis», Əbdürrəhman Caminin əsəri).
+- «Şikayətnamə» adı ilə tanınan məktubu ictimai məzmunu ilə qiymətlidir.
+- Alleqorik poemalar: «Bəngü Badə» (təkəbbürlü hökmdarların mənasız müharibələri), «Söhbətül-əsmar» (şöhrətpərəstlik, mənəmlik), «Həft cam» (cəmiyyətdəki eyiblər).
+- Janrlar: qəzəl, qəsidə, mürəbbe, müxəmməs, müsəddəs, təxmis, qitə, rübai. «Qəlb şairi» adlandırılmışdır.
+
+«MƏNİ CANDAN USANDIRDI...» qəzəli (s. 81–83)
+- Məhəbbət mövzusunda; real aşiq obrazı ilə yanaşı ilahi (sufiyanə) məhəbbətin sədaları da güclüdür; dünyəvi və ilahi məhəbbət çulğaşır.
+- Lirik qəhrəman səmimi, sədaqətli, cəfakeşdir; yolundan dönmür.
+- Misralar: «Məni candan usandırdı, cəfadan yar usanmazmı? / Fələklər yandı ahimdən, muradım şəmi yanmazmı?»
+
+«LEYLİ VƏ MƏCNUN» poeması (1537) (s. 84–90)
+- Nizami mövzunu ilk dəfə yazılı ədəbiyyata gətirmiş, təxminən 350 il sonra Füzuli doğma türkcəmizdə «Leyli və Məcnun»u yazmışdır.
+- Yazılma səbəbi: Rum zərifləri şairdən bu dastanı türkcə yazmağı istəmişlər: «Leyli-Məcnun əcəmdə çoxdur, / Ətrakdə ol fəsanə yoxdur.»
+- Qeys şöhrətli, varlı qəbilə başçısının yeganə övladıdır; doğulanda ağlayır. Məktəbdə Leyli ilə tanış olur və onu sevir. Sevdaya düşdüyü üçün cəmiyyət onu «məcnun» sayır; o, təbiətə üz tutur.
+- Leylinin anası qızı ilə bağlı yayılan xəbəri qorxu ilə qarşılayır; aşiqliyi qıza layiq saymır.
+- Leylinin atası qızını Məcnuna verməyə bir şərtlə razı olur: sevdasından əl çəksin. Sonra qızının fikrini soruşmadan onu İbn Səlama ərə verməyə razı olur.
+- İbn Səlam — Leylini təsadüfən görüb elçi göndərən zadəgan.
+- Digər obrazlar: Nofəl, Zeyd.
+- Leyli hüquqsuz olduğunu dərk edir, amma saf eşqinə sadiq qalır: «Mən gövhərəm, özgələr xiridar, / Məndə degil ixtiyari-bazar.»
+
+--------------------------------------------------------------------
+7.6. «KOROĞLU» EPOSU — «HƏMZƏNİN QIRATI QAÇIRMASI» qolu — Erkən yeni dövr (s. 96–106)
+--------------------------------------------------------------------
+- Bağdad əhvalatından sonra xotkar paşaları, pəhləvanları yığıb Koroğlunu məhv etmək üçün məclis qurur. Xotkar Koroğludan qorxur.
+- Hasan paşa (Toqat paşası, «dava eləməyin min bir fəndini bilən» sərkərdə) bu işi öhdəsinə götürür; xotkar ona qırx gün möhlət verir, uğur qazansa sədr-əzəm edəcəyini vəd edir.
+- Bolu bəy (hiyləgər) Toqat paşalığı və Hasan paşanın böyük qızı Dünya xanım müqabilində razı olur; şərti: pəhləvan Qəcər Alı və Mehtər Murtuz ona verilsin. Mehtər Murtuz düz yeddi il Koroğluya mehtərlik etmişdi.
+- Ərəb Reyhandan məktub gəlir: Koroğlu onun düşmənidir, o da Koroğlunun üstünə getməyə hazırdır.
+- Mehtər Murtuz məsləhət görür: Koroğlunun igidliyinin yarısı Qıratdadır, atı onun əlindən almaq lazımdır.
+- Keçəl Həmzə (heç kimin saymadığı adam) Qıratı gətirməyi öhdəsinə götürür; mal-dövlət, bəylik, oğulluq istəmir, Hasan paşanın kiçik qızını istəyir.
+- Koroğlu dəlilərin və xanımların etirazına baxmayaraq Həmzənin Çənlibeldə yaşamasına razılıq verir, Düratı ona tapşırır; Həmzə Qıratı qaçırır.
+- Dəyirmanın qarşısındakı dialoq Koroğlunun və Həmzənin mənəvi aləmini açır. Koroğlunun sözləri: «Ay zalım, belə atı da bir qıza verərlərmi?»; «Sən olasan duz-çörəyim, Həmzə, incitmə Qıratı».
+- Koroğlu üç gün, üç gecə ac-susuz yatır; sonra Həmzəni bağışlayır.
+- Nigar xanım — bütün dəlilərin ana kimi sevdiyi, ədalətli, uzaqgörən xanım; Həmzə məsələsində dəlilərin fikrini müdafiə edir.
+- Sonda Koroğlu Hasan paşanı «biləyinə dolayır», qaçıb qala divarına dırmaşan paşa gülünc vəziyyətə düşür.
+- İdeya: Koroğlunun gücü onun ayıq sərkərdə olması və xalqla, silahdaşları ilə əlbir hərəkət etməsidir.
+
+--------------------------------------------------------------------
+7.7. MOLLA PƏNAH VAQİF (1717–1797) — Erkən yeni dövr (s. 107–112)
+--------------------------------------------------------------------
+- Qazax mahalının Qıraq Salahlı kəndində doğulmuşdur. Əsl adı Pənah; elmli olduğu üçün adına «molla» titulu artırılmışdır.
+- Mükəmməl mədrəsə təhsili almış, ərəb və fars dillərini öyrənmişdir.
+- Şuşada məskunlaşmış; Qarabağ hökmdarı İbrahim xan onu saraya dəvət edib eşikağası (xarici işlərə baxan vəzir) təyin etmişdir.
+- Ömrünün sonunda Ağa Məhəmməd şah Qacarın əlindən qurtulsa da, Qarabağ xanlığını ələ keçirən Məhəmməd bəy Cavanşirin zülmünə məruz qalmışdır. Öldürülərkən evinin qarət olunduğu, əlyazmalarının itdiyi güman edilir.
+- Azərbaycan ədəbiyyatında erkən realizmin yaradıcısıdır. Real, gerçək eşqi tərənnüm edir; qoşmaları sayca çoxluq təşkil edir; gözəlləmələri məşhurdur.
+- «Bax» rədifli qəzəli dostu Molla Vəli Vidadiyə ünvanlanıb: «Üz çevir Ağa Məhəmməd xandan, ey kəmtər gəda...»
+- «Görmədim» müxəmməsi — ictimai lirikanın və erkən realizmin ən mükəmməl nümunəsi.
+
+«PƏRİ» qoşması (s. 110–112)
+- El-obanın təriflədiyi, şairin özünün də tanıdığı ağıllı bir qıza həsr olunub.
+- İdeya: Vaqif hər göyçək üzlünü gözəl saymır; həqiqi gözəl həm zahirən, həm mənən — ağıllı, ədəbli olmalı, şeiri duymalıdır.
+- Misralar: «İxtilatın şirin, sözün məzəli, / Şəkər gülüşündən canlar təzəli, / Ellər yaraşığı, ölkə gözəli, / Nə gözəl doğubsan anadan, Pəri!»
+
+--------------------------------------------------------------------
+7.8. QASIM BƏY ZAKİR (1784–1857) — Maarifçi-realizm dövrü (s. 120–124)
+--------------------------------------------------------------------
+- Şuşa şəhərində bəy ailəsində doğulmuşdur. Mollaxanada oxumuş, ərəb və fars dillərini öyrənmişdir. İlk şeirlərini Füzulinin təsiri ilə yazmışdır.
+- Firidun bəy Köçərli onu xoşsurət, uca qamətli, rəhmli və mürüvvətli insan kimi səciyyələndirir.
+- Ömrünün çoxunu Xındırıstan kəndində yaşamış, təsərrüfatla məşğul olmuşdur.
+- Satiralarına görə həbs və sürgün həyatı yaşamış; dostlarının, xüsusən M.F.Axundzadənin səyi ilə azad olub Şuşaya qayıtmış, polis nəzarəti altında yaşamışdır.
+- 1857-ci ildə Şuşada vəfat etmiş, Mirzə Həsən qəbiristanlığında dəfn edilmişdir.
+- Janrlar: qoşma, gəraylı, təcnis, qəzəl, müxəmməs, müstəzad; satiraları daha qiymətlidir.
+- Mənzum hekayələri: «Məlikzadə və Şahsənəm», «Aşiqin təam bişirməyi» (məhəbbət); «Dəvəsi itən kəs», «Tərlanlar və elçilər» (tərbiyəvi); «Dərviş ilə qız», «Həyasız dərvişlər haqqında» (satirik).
+- Təmsilləri: «Tülkü və Qurd», «Aslan, Qurd və Çaqqal».
+- F.Köçərli: «Vaqifdən sonra Azərbaycan bədii dilini daha da zənginləşdirən və incələşdirən sənətkar».
+- Qoşa sözlər («sallana-sallana», «baxa-baxa»), daxili qafiyələr, atalar sözləri işlədir.
+
+«BADİ-SƏBA, MƏNİM DƏRDİ-DİLİMİ...» qoşması (s. 122–124)
+- Lirik qəhrəman badi-səbaya (səhər yelinə) müraciət edir; fikir ardıcıl olaraq sual şəklində ifadə olunur; təzad işlənir.
+- Aşiq sevgilisini «büti-ziba», «yer üzünün qibləgahı» adlandırır; həsrətdən saralsa da ümidsiz deyil.
+- Misralar: «Badi-səba, mənim dərdi-dilimi / Ol büti-zibayə dedin, nə dedi?»
+
+--------------------------------------------------------------------
+7.9. MİRZƏ FƏTƏLİ AXUNDZADƏ (1812–1878) — Maarifçi-realizm dövrü (s. 125–153)
+--------------------------------------------------------------------
+- Şəki şəhərində doğulmuşdur. Atası Xamnə qəsəbəsindən Mirzə Məhəmmədtağı, anası şəkili Nanə xanım.
+- Anasının əmisi Axund Hacı Ələsgərin himayəsində böyümüş; o, Mirzə Fətəlinin ruhani olmasını istəsə də, müəllimi Mirzə Şəfi Vazehin təsiri ilə bu fikirdən daşınmışdır.
+- Tiflisə gətirilmiş, Qafqaz baş hakiminin dəftərxanasında Şərq dilləri mütərcimi işləmiş, diplomatik danışıqlarda iştirak etmişdir. Tiflis qəza məktəbində dərs demiş, yerini müəllimi M.Ş.Vazehə vermişdir.
+- 1878-ci ildə vəfat etmiş, Tiflisdə müəllimi Mirzə Şəfi Vazehin qəbrinin yanında dəfn olunmuşdur.
+- Təxəllüsü: Səbuhi («səhər adamı»). İlk çap əsəri: «Matəm qəsidəsi» — sonralar «Puşkinin ölümünə Şərq poeması» adlanmışdır. «Zəmanədən şikayət» şeiri süjetli lirikanın nümunəsidir.
+- Komediyaları:
+  1) «Hekayəti-molla İbrahimxəlil kimyagər» (1850) — ilk komediyası; cəhalət və fırıldaqçılıq.
+  2) «Hekayəti-müsyö Jordan həkimi-nəbatat və dərviş Məstəli şah caduküni-məşhur» (1850).
+  3) «Hekayəti-xırs quldurbasan» (1851) — kənd həyatı.
+  4) «Sərgüzəşti-vəziri-xani Lənkəran» (1851) — xanlıqlar dövrü.
+  5) «Hekayəti-mərdi-xəsis» («Hacı Qara», 1852) — xəsislik; tacir Hacı Qara, müflis bəy Heydər bəy.
+  6) «Mürafiə vəkillərinin hekayəti» (1855) — sonuncu komediyası; Ağa Mərdan, Səkinə xanım.
+- «Aldanmış kəvakib» povesti (1857) — realist bədii nəsrin dəyərli nümunəsi.
+- «Kəmalüddövlə məktubları» — fəlsəfi əsəri.
+- Maarifçi realizm ədəbi cərəyanının yaradıcısıdır.
+
+«MÜSYÖ JORDAN VƏ DƏRVİŞ MƏSTƏLİ ŞAH» komediyası (dörd məclisdə) (s. 128–140)
+- Obrazlar: Müsyö Jordan — nəbatat alimi, parisli, 40 yaşında; Hatəmxan ağa — Təklə-Muğanlı obasının bəyi, qarabağlı, 65 yaşında; Şərəfnisə xanım — böyük qızı, 16 yaşında; Gülçöhrə — kiçik qızı, 9 yaşında; Şəhrəbanu xanım — Hatəmxan ağanın arvadı, 45 yaşında; Şahbaz bəy — qardaşı oğlu, Şərəfnisənin nişanlısı, 22 yaşında; Xanpəri — Şərəfnisənin dayəsi; Dərviş Məstəli şah — məşhur cadugər, iranlı, 50 yaşında; Qulaməli — onun şagirdi.
+- Süjet: Şahbaz bəy Müsyö Jordanla Parisə getmək istəyir → Şərəfnisə ağlayır, qadınlar təlaşa düşür (bədii müqəddimə) → Şəhrəbanu xanım: «Mən ondan da höcətəm, qoymaram getsin!» (düyün) → dərviş Məstəli şaha müraciət olunur; dərviş yüz təzə bacaqlı (pul) alıb on günə Arazın o tayına qaçmağı planlaşdırır → dərvişin Parisi «dağıtmağa» hazırlaşdığı səhnə (kulminasiya) → Müsyö Jordan Fransadakı inqilab xəbərini gətirir, Şahbazı götürmədən tələsik gedir (düyünün açılması).
+- Köhnəlik zahirən qələbə çalır, əslində bu, avamlığın ifşasıdır.
+- Müsyö Jordan və dərviş Məstəli şah əsər boyu üz-üzə gəlmir; konflikt onların təmsil etdiyi yenilik və köhnəlik arasındadır.
+- Şahbaz bəy yaşadığı mühiti «qamışlıq» sayır; Fransaya gedib dil öyrənmək, yeni mədəniyyətlə tanış olmaq istəyir.
+- Hatəmxan ağa — yumşaqtəbiətli, qonaqpərvər, alicənab; əvvəl etiraz etsə də, sonra razılıq verir.
+- Dərviş tipin öz dili ilə özünü ifşa etmək üsulu ilə təsvir olunur.
+- İdeya: nadanlıq, fanatizm, gerilik əleyhinə; tərəqqi dünyəvi elmlərdə və gənclərin Avropa mədəniyyətinə yiyələnməsindədir.
+
+«ALDANMIŞ KƏVAKİB» povesti (1857) (s. 141–153)
+- «Kəvakib» — ulduzlar. Mövzu Səfəvi tarixçisi İsgəndər bəy Münşinin «Tarixi-aləm-arayi-Abbasi» əsərindən götürülüb.
+- Baharın əvvəli, Novruzdan üç gün keçir. Münəccimbaşı Mirzə Sədrəddin Şah Abbasa xəbər verir: Novruzdan on beş gün keçmiş Mərrixin Əqrəblə toqquşması nəticəsində səltənət sahibinə böyük bəla gələcək.
+- Şah Abbas o vaxt 22 yaşında idi, qorxuya düşür.
+- Şahın məclisi: vəzir Mirzə Möhsün, sərdar Zaman xan, müstövfi (maliyyə naziri) Mirzə Yəhya, mollabaşı Axund Səməd — hamısı ulduzlara qarşı çarəsiz olduqlarını deyir (yaltaqlıq, səriştəsizlik).
+- Mövlana Cəmaləddin məsləhət görür: on beş gün şah taxtı ölümə layiq bir günahkara versin, özü gizlənsin.
+- Mollabaşı Qəzvində yaşayan Yusif Sərracı təklif edir (ruhaniləri və hakimləri tənqid etdiyinə görə).
+- Yusif Sərrac — Qəzvin kəndlisi Kərbəlayı Səlimin oğlu, sərrac (yəhərçi).
+- Yusif şah olan kimi islahatlar aparır: ölkəni abadlaşdırır, vergiləri azaldır, xalq içindən çıxmış namuslu adamları vəzifəyə gətirir, köhnə vəzirləri həbs edir.
+- Vəzifədən çıxarılanlar üsyan təşkil edir; Yusif şahın tərəfdarları məğlub olur, Yusif şah itkin düşür. Şah Abbas taxtına qayıdır, «hər iş köhnə qərar üzrə» davam edir.
+- Sonda müəllif ulduzların «aldandığını» istehza ilə yazır.
+- İdeya: Şah Abbas və vəzirlərinin simasında ədalətsiz idarəçilik ifşa olunur; Yusif Sərrac ədalətli xalq hökmdarı idealıdır.
+
+--------------------------------------------------------------------
+7.10. AŞIQ ƏLƏSGƏR (1821–1926) — Maarifçi-realizm dövrü (s. 154–160)
+--------------------------------------------------------------------
+- Göyçə mahalının Ağkilsə kəndində doğulmuşdur. Atası Alməmməd kişi əkinçilik, dülgərlik edir, sonra dəyirman işlədirdi.
+- Xüsusi təhsil almamış, el məclislərində dastan və nağılları yaddaşında saxlamışdır.
+- Atası onu Aşıq Alının yanında şəyirdliyə qoymuşdur.
+- Göyçə, İrəvan, Naxçıvan, Qazax, Qarabağ, Gəncə, Kəlbəcər məclislərinə dəvət olunmuşdur.
+- Erməni daşnaklarının Göyçədə törətdiyi qırğın nəticəsində ailəsi ilə Kəlbəcərin Yanşaq kəndinə, oradan Tərtərə köçmüş; iki il sonra doğma kəndinə qayıtmış, 1926-cı ildə orada vəfat etmişdir.
+- Janrlar: gəraylı, qoşma, təcnis, deyişmə, ustadnamə, müxəmməs.
+- Gözəlləmələri: «Güləndam», «Bəyistan», «Düşdü». Təbiət şeirləri: «Yaylaq», «Gördüm», «Dağlar». Ustadnamələri: «Gərəkdi», «Olmaz».
+- Misralar: «Səni gördüm, əl götürdüm dünyadan, / Qara gözlü, qələm qaşlı Güləndam!»; «Könlüm qaranquştək uçub qoynuna, / Gəzir hər yamacı, hər yalı, yaylaq!»
+
+«DAĞLAR» qoşması (s. 157–160)
+- Aşığın iki «Dağlar» qoşması var: birində nikbin ovqat (baharda dağların gözəlliyi), digərində kədərli ovqat.
+- Dərslikdəki qoşma qaçqınlıqdan iki il sonra doğma yurda qayıdan aşığın dağları pərişan görməsindən yaranıb: el yaylağa qalxmır, gözəllər seyrə çıxmır, məclis qurulmur.
+- Dağ adları: Kəpəz, Murov, Qonur, Qoşqar, Həsənnənə, Həsənbaba, Xaşbulaq yaylağı.
+- Misralar: «Hanı mən gördüyüm qurğu-büsatlar?! / ... Niyə pərişandı halların, dağlar?!»; «Arsız aşıq elsiz niyə yaşadı?! / Ölsün Ələsgərtək qulların, dağlar!»
+
+--------------------------------------------------------------------
+7.11. SEYİD ƏZİM ŞİRVANİ (1835–1888) — Maarifçi-realizm dövrü (s. 161–166)
+--------------------------------------------------------------------
+- Qədim Şamaxı şəhərində ruhani ailəsində doğulmuşdur. Atasını kiçik yaşda itirmişdir.
+- Ana babası Molla Hüseyn onu Dağıstanın Yaqsay kəndinə aparmış; orada on bir il yaşayıb ərəb, fars dillərini öyrənmiş, 1853-cü ildə Şamaxıya qayıtmışdır.
+- İraqa getmiş: Nəcəf və Bağdadda, sonra Suriyanın Şam şəhərində ali ruhani mədrəsəsində oxumuşdur.
+- Vətənə qayıdıb ruhanilik yox, müəllimlik etmişdir. 1869-cu ildə yeni üsullu məktəb açmışdır (ana dili, fars dili, tarix, coğrafiya).
+- 1877-ci ildə Şamaxı şəhər məktəbinə Azərbaycan dili və şəriət müəllimi təyin olunmuş; işdən çıxarılmış, Tiflisdə haqqını sübut edib geri qaytarılmışdır.
+- Füzuli ədəbi məktəbinin qüdrətli davamçısıdır.
+- Maarifçi şeirlərini «Əkinçi» qəzetində çap etdirmişdir: «Qafqaz müsəlmanlarına xitab», «Təlim-tərbiyə haqqında».
+- «Rəbiül-ətfal» («Uşaqların baharı») — əxlaqi-didaktik şeirlər kitabı.
+- Təmsili: «Eşşək və Arılar» (elmin qədrini bilməyən cahillərin tənqidi).
+- Yüzdən artıq mənzum hekayə yazmışdır (xalq nağılları, Molla Nəsrəddin lətifələri əsasında).
+- Satiraları: «Şirvan bəyləri haqqında», «Ruhanilik təhsili», «Müctəhidin təhsildən qayıtması».
+- Ədəbiyyatşünaslıq əsəri — təzkirə.
+
+«GUŞ QIL...» müxəmməsi (s. 163–166)
+- Mövzu: musiqi; insanları musiqidən zövq almağa səsləyir, musiqini haram sayan yalançı zahidlərin sözlərinə uymamağa çağırır.
+- Şair İsa peyğəmbərin nəfəsi ilə ölünü dirildməsi rəvayətinə müraciət edir: musiqi də insan ruhuna möcüzəli təsir edir.
+- Əruz vəznində, müxəmməs janrındadır; nikbin ovqat sona qədər artır.
+- Misralar: «Guş qıl, ey ki, bilirsən özüvi vaqifi-kar, / Agah ol, gör ki, nədir naleyi-ney, nəğmeyi-tar.»
+
+--------------------------------------------------------------------
+7.12. NƏCƏF BƏY VƏZİROV (1854–1926) — Maarifçi-realizm dövrü (s. 167–190)
+--------------------------------------------------------------------
+- Şuşa şəhərində bəy ailəsində doğulmuşdur. Atası xəstə olduğundan ailəni anası Mina xanım dolandırırdı.
+- Bakıda realnı gimnaziyada oxumuş; dünyagörüşünə müəllimi Həsən bəy Zərdabi mühüm təsir göstərmişdir.
+- Sankt-Peterburqda universitetə daxil olmuş, havası səhhətinə düşmədiyindən Moskvada Kənd Təsərrüfatı və Meşəçilik Akademiyasında oxumuşdur.
+- Dilicanda meşəbəyi işləmiş; siyasi görüşlərinə görə dövlət qulluğundan azad edilib Bakıya gəlmiş, H.Zərdabi ilə maarifçilik işində fəal olmuşdur.
+- 1913-cü ildə Bakıda ədəbi fəaliyyətinin 40 illiyi qeyd olunmuşdur.
+- Sovet dövründə Torpaq Komissarlığında müfəttiş, texnikumda müəllim olmuş; 1926-cı ildə Şamaxının Çuxuryurd yaylağında tələbələrin çöl təcrübəsi zamanı vəfat etmişdir.
+- Əsərləri: «Ev tərbiyəsinin bir şəkli» (1875) — köhnə tərbiyə üsulunun tənqidi (Bayraməli bəy, oğulları Səfdərqulu və Rəsul); «Daldan atılan daş topuğa dəyər» (1890), «Sonrakı peşmançılıq fayda verməz» (1890), «Adı var, özü yox» (1891), «Yağışdan çıxdıq, yağmura düşdük» (1895), «Müsibəti-Fəxrəddin» (1896); «Pəhləvanani-zəmanə» (1900) — neft mövzusunda ilk əsərlərdən; «Ağakərim xan Ərdəbili» (1908), «Vay şələkum-məəlləkum» (1909), «Pul düşkünü Hacı Fərəc lənətullah» (1914); dramlar «Keçmişdə qaçaqlar», «Təzə əsrin ibtidası».
+
+«MÜSİBƏTİ-FƏXRƏDDİN» faciəsi (1896) (s. 169–190)
+- Ədəbiyyat tariximizdə İLK FACİƏ. Altı məclisdən ibarətdir.
+- Obrazlar: Fəxrəddin bəy — darülfünunu (universiteti) bitirmiş cavan oğlan; Mələk xanım — onun anası; Şahmar bəy — qardaşı; Rüstəm bəy — böyük mülkədar; Mahmud bəy — Rüstəm bəyin oğlu; Səadət xanım — Rüstəm bəyin qızı; Gülbahar xanım — Mahmud bəyin arvadı, Fəxrəddinin bacısı; Hürü — qoca qulluqçu; Cahangir bəy — cavan mülkədar.
+- Konflikt: yeni yaranan mütərəqqi qüvvələrlə (Fəxrəddin, Səadət) köhnə, mürtəce qüvvələr (qan davası, cəhalət) arasında.
+- Rüstəm bəy qan intiqamı almaq istəyir; oğlu Mahmud bəy ona etiraz edir. Səadət xanım atasının niyyətinə qarşı çıxır: «Qardaş, biz heyvan deyilik ki! Bizə insan deyirlər...»
+- Fəxrəddin təhsildən qayıdıb öz xərci ilə xəstəxana və məktəb açır, təsərrüfatını yenidən qurur; Mələk xanım və Şahmar bəy onu qan davasına qoşmaq istəyir, Səadətlə evlənməsinə qarşı çıxırlar.
+- Fəxrəddin mühitdə tək olduğunu anlayıb «bir gül ilə bahar olmaz» qənaətinə gəlir.
+- Cahangir bəy sevdiyi Səadətə qovuşmaq üçün günahsız Fəxrəddini öldürmək yolunu seçir. Fəxrəddin faciəli şəkildə həlak olur.
+- Rüstəm bəy oğlu Mahmudun ölümündə günahkar olduğunu anlayıb deyir: «Məni öldürün, ay camaat, mən biimanı sağ qoymayın». Onun faciəsi köhnəliyin faciəsidir.
+- Səadət xanım — dramaturgiyamızda ilk maarifçi qadın surəti: «Heyif sənə, Fəxrəddin, bu vəhşi nadanlar sənin qədrini, qiymətini bilmədilər!..»
+- Fəxrəddin cismən məhv olsa da, mənəvi qələbə qazanır.
+
+====================================================================
+8. TƏHVİL VERMƏZDƏN ƏVVƏL YOXLA
+====================================================================
+[ ] Oyun tək HTML faylıdır və internetsiz açılır.
+[ ] Bütün mətnlərdə Azərbaycan hərfləri düzgün görünür.
+[ ] Bütün 8 raund növü işləyir; «Uyğunlaşdır», «Zaman lenti», «Süjet zənciri» toxunuşla da işləyir.
+[ ] Sual bankında ən azı 200 sual var; hər sənətkar və hər əsər əhatə olunub.
+[ ] Heç bir sualda bölmə 7-də olmayan fakt yoxdur; tarixlər bölmə 7 ilə üst-üstə düşür.
+[ ] Hər sualın bir düzgün cavabı, izahı və səhifə nömrəsi var.
+[ ] Komanda rejimində növbə, xal lövhəsi, jokerlər və final mərci düzgün işləyir.
+[ ] Yekun ekranı, «Səhvlərimi təkrar et» və diplom çapı işləyir.
+[ ] Müəllim panelində sual əlavə etmək, ixrac və idxal işləyir.
+
+Cavab olaraq əvvəlcə 3–4 cümlə ilə oyunun quruluşunu təsvir et, sonra tam HTML kodunu ver.
